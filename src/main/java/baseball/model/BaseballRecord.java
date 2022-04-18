@@ -2,21 +2,26 @@ package baseball.model;
 
 public class BaseballRecord {
     private static final int ROUND_COUNT = 3;
+
+    private final StrikeNumbers strikeNumbers;
+    private final PlayerNumbers playerNumbers;
+
     private int strikeCount;
     private int ballCount;
 
     public BaseballRecord(StrikeNumbers strikeNumbers, PlayerNumbers playerNumbers) {
-        recordResult(strikeNumbers, playerNumbers);
+        this.strikeNumbers = strikeNumbers;
+        this.playerNumbers = playerNumbers;
     }
 
-    private void recordResult(StrikeNumbers strikeNumbers, PlayerNumbers playerNumbers) {
+    public void updateRecordResult() {
         for (int round = 0; round < ROUND_COUNT; round++) {
             JudgementType judgementType = BaseballRule.judgeStrikeOrBall(round, strikeNumbers, playerNumbers);
-            recordCounting(judgementType);
+            recordResultCounting(judgementType);
         }
     }
 
-    private void recordCounting(JudgementType judgementType) {
+    private void recordResultCounting(JudgementType judgementType) {
         if (judgementType == JudgementType.STRIKE) {
             this.strikeCount++;
             return;

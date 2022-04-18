@@ -54,7 +54,7 @@ public class BaseballGame {
     private BaseballRecord getBaseballRecordAndViewPrint(String inputStringNumbers) {
         PlayerNumbers playerNumbers = new PlayerNumbers(inputStringNumbers);
         BaseballRecord baseballRecord = new BaseballRecord(strikeNumbers, playerNumbers);
-
+        baseballRecord.updateRecordResult();
 
         ResultView.printGameRecord(baseballRecord);
         return baseballRecord;

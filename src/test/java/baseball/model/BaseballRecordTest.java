@@ -15,7 +15,7 @@ class BaseballRecordTest {
         StrikeNumbers strikeNumbers = new StrikeNumbers(Arrays.asList(1, 2, 3));
         PlayerNumbers playerNumbers = new PlayerNumbers(Arrays.asList(1, 2, 5));
         BaseballRecord baseballRecord = new BaseballRecord(strikeNumbers, playerNumbers);
-
+        baseballRecord.updateRecordResult();
         assertThat(baseballRecord.getStrikeCount()).isEqualTo(2);
     }
 
@@ -25,7 +25,7 @@ class BaseballRecordTest {
         StrikeNumbers strikeNumbers = new StrikeNumbers(Arrays.asList(1, 2, 3));
         PlayerNumbers playerNumbers = new PlayerNumbers(Arrays.asList(1, 3, 5));
         BaseballRecord baseballRecord = new BaseballRecord(strikeNumbers, playerNumbers);
-
+        baseballRecord.updateRecordResult();
         assertThat(baseballRecord.getStrikeCount()).isEqualTo(1);
         assertThat(baseballRecord.getBallCount()).isEqualTo(1);
     }
@@ -36,7 +36,7 @@ class BaseballRecordTest {
         StrikeNumbers strikeNumbers = new StrikeNumbers(Arrays.asList(1, 2, 3));
         PlayerNumbers playerNumbers = new PlayerNumbers(Arrays.asList(4, 5, 6));
         BaseballRecord baseballRecord = new BaseballRecord(strikeNumbers, playerNumbers);
-
+        baseballRecord.updateRecordResult();
         assertThat(baseballRecord.hasOut()).isTrue();
     }
 
@@ -46,7 +46,7 @@ class BaseballRecordTest {
         StrikeNumbers strikeNumbers = new StrikeNumbers(Arrays.asList(1, 2, 3));
         PlayerNumbers playerNumbers = new PlayerNumbers(Arrays.asList(1, 2, 3));
         BaseballRecord baseballRecord = new BaseballRecord(strikeNumbers, playerNumbers);
-
+        baseballRecord.updateRecordResult();
         assertThat(baseballRecord.isWin()).isTrue();
         assertThat(baseballRecord.getStrikeCount()).isEqualTo(3);
     }
