@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Set;
 
 public class BaseballNumbersFactory {
-    static final String ONLY_NUMBER_MESSAGE = "숫자만 입력해 주세요.";
-    static final String NUMBER_LENGTH_MESSAGE = "3자리를 입력해 주세요.";
-    static final int NUMBER_COUNT = 3;
+    private static final String ONLY_NUMBER_MESSAGE = "숫자만 입력해 주세요.";
+    private static final String NUMBER_LENGTH_MESSAGE = "3자리를 입력해 주세요.";
+    private static final int NUMBER_COUNT = 3;
 
     public static BaseballNumbers create(String numbers) {
         return new BaseballNumbers(toBaseballNumbers(split(numbers)));
