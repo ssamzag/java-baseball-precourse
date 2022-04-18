@@ -9,11 +9,16 @@ public class BaseballGame {
     private static final int END_NUMBER = 9;
 
     private PlayStatus playStatus;
-    private StrikeNumbers strikeNumbers;
+    private BaseballNumbers strikeNumbers;
+    private final BaseballRecord baseballRecord;
+
+    public BaseballGame() {
+        this.baseballRecord = new BaseballRecord();
+    }
 
     public void start() {
         do {
-            play();
+            readyAndPlayBaseballGame();
             restartOrExit();
         } while (!isExit());
     }
@@ -22,13 +27,20 @@ public class BaseballGame {
         return playStatus == PlayStatus.EXIT;
     }
 
-    private void play() {
-        changePlayStatusToPlaying();
-        generateStrikeNumbers();
+    private void readyAndPlayBaseballGame() {
+        initStatusAndStrikeNumbers();
+        playBaseballGame();
+    }
 
+    private void playBaseballGame() {
         do {
             inputPlayerNumbers();
         } while (isPlaying());
+    }
+
+    private void initStatusAndStrikeNumbers() {
+        changePlayStatusToPlaying();
+        generateStrikeNumbers();
     }
 
     private void changePlayStatusToPlaying() {
@@ -38,12 +50,11 @@ public class BaseballGame {
     private void inputPlayerNumbers() {
         String inputStringNumbers = InputView.inputNumbers();
         changeStatusIfRestartOrExit(inputStringNumbers);
-
         if (!isPlaying()) {
             return;
         }
 
-        BaseballRecord baseballRecord = getBaseballRecordAndViewPrint(inputStringNumbers);
+        setBaseballRecordAndViewPrint(inputStringNumbers);
         changeStatusIfWin(baseballRecord);
     }
 
@@ -51,13 +62,10 @@ public class BaseballGame {
         return playStatus == PlayStatus.PLAYING;
     }
 
-    private BaseballRecord getBaseballRecordAndViewPrint(String inputStringNumbers) {
-        PlayerNumbers playerNumbers = new PlayerNumbers(inputStringNumbers);
-        BaseballRecord baseballRecord = new BaseballRecord(strikeNumbers, playerNumbers);
-        baseballRecord.updateRecordResult();
-
+    private void setBaseballRecordAndViewPrint(String inputStringNumbers) {
+        BaseballNumbers playerNumbers = BaseballNumbersFactory.create(inputStringNumbers);
+        baseballRecord.updateRecordResult(strikeNumbers, playerNumbers);
         ResultView.printGameRecord(baseballRecord);
-        return baseballRecord;
     }
 
     private void changeStatusIfWin(BaseballRecord baseballRecord) {
@@ -92,7 +100,8 @@ public class BaseballGame {
     }
 
     private void generateStrikeNumbers() {
-        strikeNumbers = new StrikeNumbers(Random.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, COUNT));
+        strikeNumbers = BaseballNumbersFactory
+                .create(Random.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, COUNT));
     }
 
 

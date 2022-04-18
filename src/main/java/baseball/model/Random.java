@@ -17,4 +17,5 @@ public class Random {
 
         return new ArrayList<>(randomNumbers);
     }
+
 }

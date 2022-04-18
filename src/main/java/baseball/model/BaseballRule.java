@@ -1,7 +1,7 @@
 package baseball.model;
 
 public class BaseballRule {
-    public static JudgementType judgeStrikeOrBall(int round, StrikeNumbers strikeNumbers, PlayerNumbers playerNumbers) {
+    public static JudgementType judgeStrikeOrBall(int round, BaseballNumbers strikeNumbers, BaseballNumbers playerNumbers) {
         if (strikeNumbers.getRound(round) == playerNumbers.getRound(round)) {
             return JudgementType.STRIKE;
         }

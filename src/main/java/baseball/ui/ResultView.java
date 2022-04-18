@@ -2,14 +2,13 @@ package baseball.ui;
 
 import baseball.model.BaseballRecord;
 import baseball.model.JudgementType;
-import baseball.model.PlayStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ResultView {
     private static final String WIN_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
-    private static final String GAME_EXIT = "게임을 종료합니다.";
+    private static final String GAME_EXIT_MESSAGE = "게임을 종료합니다.";
     private static final String DELIMITER = " ";
 
     public static void printGameRecord(BaseballRecord baseballRecord) {
@@ -37,7 +36,7 @@ public class ResultView {
     }
 
     public static void printExitMessage() {
-        System.out.print(GAME_EXIT);
+        System.out.print(GAME_EXIT_MESSAGE);
     }
 
 }
